@@ -1,0 +1,6 @@
+FROM microsoft/windowsservercore
+
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+RUN Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force ; \
+    Install-Module -Name PSScriptAnalyzer,Pester -Force -AllowClobber -SkipPublisherCheck
