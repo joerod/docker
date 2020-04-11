@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 8082:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: joerod
+      WORDPRESS_DB_PASSWORD:
+      WORDPRESS_DB_NAME: jr_wordpress
+    volumes:
+      - wordpress:/var/www/html
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: jr_wordpress
+      MYSQL_USER: joerod
+      MYSQL_PASSWORD:
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  wordpress:
+  db:
